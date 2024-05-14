@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h1>All Event</h1>
+<p th:unless="${listOfEvents} and ${listOfEvents.size()}">No Events!</p>
+    <ol>
+    <th:block th:each="event:${listOfEvents}">
+        <li th:text="${event}"></li>
+    </th:block>
+    </ol>
+</body>
+</html>
