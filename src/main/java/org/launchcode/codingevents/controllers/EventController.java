@@ -31,8 +31,8 @@ public class EventController {
 
 //lives at path /events/form
     @PostMapping("form")
-    public String createEventForFormSubmission(@RequestParam String eventName){
-        listOfEvents.add(new Event(eventName));
+    public String createEventForFormSubmission(@RequestParam String eventName, @RequestParam String eventDescription){
+        listOfEvents.add(new Event(eventName,eventDescription));
         return "redirect:/events";
     }
 }
