@@ -1,5 +1,6 @@
 package org.launchcode.codingevents.controllers;
 
+import org.launchcode.codingevents.data.EventData;
 import org.launchcode.codingevents.models.Event;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +16,10 @@ import java.util.List;
 @RequestMapping("events")
 public class EventController {
 
-        private static  List<Event> listOfEvents = new ArrayList<>();
+
     @GetMapping
     public String eventList(Model model){
-        model.addAttribute("listOfEvents",listOfEvents );
+        model.addAttribute("listOfEvents", EventData.getAll());
         return "events/index";
 
     }
@@ -32,7 +33,28 @@ public class EventController {
 //lives at path /events/form
     @PostMapping("form")
     public String createEventForFormSubmission(@RequestParam String eventName, @RequestParam String eventDescription){
-        listOfEvents.add(new Event(eventName,eventDescription));
+        EventData.add(new Event(eventName,eventDescription));
         return "redirect:/events";
     }
+
+    @GetMapping("delete")
+    public String displayDeleteEventForm(Model model) {
+        model.addAttribute("title","Delete Events");
+        model.addAttribute("events",EventData.getAll());
+        return "events/delete";
+    }
+
+    @PostMapping("delete")
+    public String processDeleteEventsForm(@RequestParam(required = false) int[] eventIds) {
+
+        if (eventIds != null) {
+            for (int id : eventIds) {
+                EventData.remove(id);
+            }
+        }
+
+        return "redirect:/events";
+    }
+
+
 }
