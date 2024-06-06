@@ -22,7 +22,8 @@ public class EventController {
 
 //    lives at path /events/form
     @GetMapping("form")
-    public String renderCreateEventForm(){
+    public String renderCreateEventForm(Model model){
+//        model.addAttribute("title", "Create Event");
         return "events/form";
     }
 
@@ -33,7 +34,7 @@ public class EventController {
         if (errors.hasErrors()){
             model.addAttribute("title", "Create Event");
             model.addAttribute("errorMsg","Bad Data!");
-            return "events/index";
+            return "events/form";
         }
         EventData.add(newEvent);
         return "redirect:/events";
