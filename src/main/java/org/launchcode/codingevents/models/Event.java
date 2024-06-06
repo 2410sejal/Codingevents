@@ -30,6 +30,8 @@ public class Event {
         this.id = nextId;
         nextId++;
     }
+
+
     public String getName() {
         return name;
     }
