@@ -1,5 +1,4 @@
 package org.launchcode.codingevents.controllers;
-
 import jakarta.validation.Valid;
 import org.launchcode.codingevents.data.EventCategoryRepository;
 import org.launchcode.codingevents.models.EventCategory;
