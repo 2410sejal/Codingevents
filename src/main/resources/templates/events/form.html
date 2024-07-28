@@ -1,34 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head th:replace="fragments::header"></head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}"></head>
 <body class="container">
-<h1>Create Event</h1>
-<nav th:replace = "fragments :: navigation"></nav>
 
-<p th:text = "${errorMsg}" style="color:red;"></p>
+<header th:replace="~{fragments :: header}"></header>
+
+<p th:text="${errorMsg}" style="color:red;"></p>
 
 <form method="post">
     <div class="form-group">
         <label>Name
-            <input  th:field="${event.name}" class="form-control"/>
+            <input th:field="${event.name}" class="form-control">
         </label>
         <p class="error" th:errors="${event.name}"></p>
     </div>
     <div class="form-group">
         <label>Description
-            <input  th:field="${event.description}"class="form-control"/>
+            <input th:field="${event.eventDetails.description}" class="form-control">
         </label>
-        <p class="error" th:errors="${event.description}"></p>
+        <p class="error" th:errors="${event.eventDetails.description}"></p>
     </div>
     <div class="form-group">
         <label>Contact Email
-            <input  th:field="${event.contactEmail}" class="form-control"/>
+            <input th:field="${event.eventDetails.contactEmail}" class="form-control">
         </label>
-        <p class="error" th:errors="${event.contactEmail}"></p>
+        <p class="error" th:errors="${event.eventDetails.contactEmail}"></p>
     </div>
     <div class="form-group">
         <label>Category
-            <select th:field="${event.eventCategory}" />
+            <select th:field="${event.eventCategory}">
                 <option th:each="eventCategory : ${categories}"
                         th:value="${eventCategory.id}"
                         th:text="${eventCategory.name}"
@@ -37,10 +37,8 @@
             <p class="error" th:errors="${event.eventCategory}"></p>
         </label>
     </div>
-
     <div class="form-group">
-
-        <input type="submit" value="Click Here" class="btn btn-primary">
+        <input type="submit" value="Create" class="btn btn-success">
     </div>
 </form>
 
